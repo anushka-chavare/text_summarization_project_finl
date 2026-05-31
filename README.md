@@ -52,6 +52,10 @@ This project is a smart summarization tool that extracts key information from lo
 
 ---
 
+## 🌐 Live Demo
+
+👉 https://textsummarizationprojectfinl.streamlit.app/
+
 📸 Demo Screenshots
 📝 Text Input UI
 
