@@ -22,6 +22,20 @@ This project summarizes long text into shorter meaningful summaries using NLP te
 pip install -r requirements.txt
 streamlit run app.py
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Screenshots
 
 ### User Interface
