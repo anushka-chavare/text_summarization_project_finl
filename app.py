@@ -1,11 +1,11 @@
 import streamlit as st
-from transformers import pipeline
 from pypdf import PdfReader
+from transformers import pipeline
 
-# ----------------------------
-# MODEL
-# ----------------------------
-summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
+summarizer = pipeline(
+    "summarization",
+    model="facebook/bart-large-cnn"
+)
 
 # ----------------------------
 # FUNCTIONS
