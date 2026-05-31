@@ -27,13 +27,10 @@ streamlit run app.py
 ## Screenshots
 
 ### User Interface
-
-![UI](Screenshots/MUI.png)
+![UI](MUI.png)
 
 ### Transformer Summary Output
-
-![Transformer Output](Screenshots/Transformers_output.png)
+![Transformer Output](Transformers_output.png)
 
 ### Before vs After Summarization
-
-![Before After](Screenshots/before_after.png)
+![Before After](before_after.png)
