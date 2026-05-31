@@ -41,7 +41,7 @@ if st.button("Summarize"):
 
         st.subheader("Summary")
         st.write(" ".join(summary))
-=======
+
 
 st.title("Text Summarizer (Extractive NLP)")
 
