@@ -1,35 +1,41 @@
-from transformers import pipeline
-from PyPDF2 import PdfReader
+import streamlit as st
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize, sent_tokenize
+import heapq
 
-# Load summarization model
-summarizer = pipeline(
-    "summarization",
-    model="facebook/bart-large-cnn"
-)
+st.title("Text Summarizer (Extractive NLP)")
 
-# Read PDF file
-reader = PdfReader(r"C:\Users\anush\OneDrive\Desktop\CPE\Weekly Diary finl.pdf")
+text = st.text_area("Enter Text")
 
-text = ""
+if st.button("Summarize"):
 
-# Extract text from all pages
-for page in reader.pages:
-    extracted_text = page.extract_text()
+    if text.strip():
 
-    if extracted_text:
-        text += extracted_text
+        sentences = sent_tokenize(text)
 
-# Limit text size (important for transformer models)
-text = text[:2000]
+        stop_words = set(stopwords.words("english"))
 
-# Generate summary
-summary = summarizer(
-    text,
-    max_length=120,
-    min_length=40,
-    do_sample=False
-)
+        word_freq = {}
 
-# Print summary
-print("\n========== SUMMARY ==========\n")
-print(summary[0]['summary_text'])
+        for word in word_tokenize(text.lower()):
+            if word.isalnum() and word not in stop_words:
+                word_freq[word] = word_freq.get(word, 0) + 1
+
+        sentence_scores = {}
+
+        for sentence in sentences:
+            for word in word_tokenize(sentence.lower()):
+                if word in word_freq:
+                    sentence_scores[sentence] = (
+                        sentence_scores.get(sentence, 0)
+                        + word_freq[word]
+                    )
+
+        summary = heapq.nlargest(
+            3,
+            sentence_scores,
+            key=sentence_scores.get
+        )
+
+        st.subheader("Summary")
+        st.write(" ".join(summary))
