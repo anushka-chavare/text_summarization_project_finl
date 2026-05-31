@@ -37,50 +37,49 @@ This project is a smart summarization tool that extracts key information from lo
 ---
 
 ## 📁 Project Structure
-
-text_summarization_project/
-│
-├── app.py
-├── requirements.txt
-├── assets/
-│   ├── text input ui.png
-│   ├── pdf input ui.png
-│   ├── text output 1.png
-│   ├── text output 2.png
-│   ├── pdf output 1.png
-│   ├── pdf output 2.png
-│   ├── pdf output 3.png
+---
+📁 text_summarization_project
+├── 📄 app.py
+├── 📄 requirements.txt
+└── 📁 assets
+    ├── 🖼️ text_input_ui.png
+    ├── 🖼️ pdf_input_ui.png
+    ├── 🖼️ text_output_1.png
+    ├── 🖼️ text_output_2.png
+    ├── 🖼️ pdf_output_1.png
+    ├── 🖼️ pdf_output_2.png
+    └── 🖼️ pdf_output_3.png
 
 ---
 
 📸 Demo Screenshots
 📝 Text Input UI
 
-![Text Input UI](assets/text input UI.png)
+![Text Input UI](assets/text_input_ui.png)
 
 📄 PDF Input UI
 
-![PDF Input UI](assets/pdf input UI.png)
+![PDF Input UI](assets/pdf_input_ui.png)
 
 🧠 Text Output (Result 1)
 
-![Text Output 1](assets/text output(1).png)
+![Text Output 1](assets/text_output1.png)
 
 🧠 Text Output (Result 2)
 
-![Text Output 2](assets/text output(2).png)
+![Text Output 2](assets/text_output2.png)
 
 📄 PDF Output (Result 1)
 
-![PDF Output 1](assets/pdf output(1).png)
+![PDF Output 1](assets/pdf_output1.png)
 
 📄 PDF Output (Result 2)
 
-![PDF Output 2](assets/pdf output(2).png)
+![PDF Output 2](assets/pdf_output2.png)
 
 📄 PDF Output (Result 3)
 
-![PDF Output 3](assets/pdf output(3).png)
+![PDF Output 3](assets/pdf_output3.png)
 
 📊 Use Cases
 Summarizing research papers 📚
