@@ -1,87 +1,99 @@
-# 📝 AI Text Summarization Project
+# 📄 AI Text & PDF Summarizer
 
-## Overview
-
-This project is an NLP-based Text Summarization application that converts lengthy text into concise and meaningful summaries.
-
-The application supports both:
-
-* Extractive Summarization using NLTK
-* Transformer-based Summarization using Hugging Face Transformers (BART)
-
-The project is built with Python and Streamlit and provides an easy-to-use web interface for generating summaries from large text inputs.
+An AI-powered web application that summarizes long text and PDF documents using HuggingFace Transformers and Streamlit.
 
 ---
 
-## Features
+## 🚀 Overview
 
-* Extractive Text Summarization
-* Transformer-Based Summarization
-* Interactive Streamlit Interface
-* Fast Summary Generation
-* Before vs After Comparison
-* NLP-Based Text Processing
+This project is a smart summarization tool that extracts key information from long text and PDF files using a pre-trained transformer model. It provides an interactive web interface built with Streamlit.
 
 ---
 
-## Technologies Used
+## ✨ Features
 
-* Python
-* NLTK
-* Hugging Face Transformers
-* Streamlit
-* PyTorch
-
----
-
-## Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/anushka-chavare/text_summarization_project_finl.git
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-Run the application:
-
-```bash
-streamlit run app.py
-```
+- ✍️ Summarize raw text input  
+- 📄 Upload and summarize PDF documents  
+- 🎚 Adjustable summary length control  
+- 📊 Word count statistics (input vs summary)  
+- 📥 Download summary as text file  
+- 🧠 Example inputs for quick testing  
 
 ---
 
-## Screenshots
+## 🛠️ Tech Stack
 
-### User Interface
-
-![UI](Screenshots/MUI.png)
-
-### Transformer Output
-
-![Transformer Output](Screenshots/Transformers_output.png)
-
-### Before vs After Summarization
-
-![Before After](Screenshots/before_after.png)
+- Python 🐍  
+- Streamlit 🎈  
+- HuggingFace Transformers 🤗  
+- PyPDF 📄  
 
 ---
 
-## Future Enhancements
+## 🤖 Model Used
 
-* PDF Summarization
-* URL Summarization
-* Multi-language Support
-* Download Summary Feature
-* Cloud Deployment
+- `facebook/bart-large-cnn`
 
 ---
 
-## Author
+## 📁 Project Structure
 
+text_summarization_project/
+│
+├── app.py
+├── requirements.txt
+├── assets/
+│   ├── text input ui.png
+│   ├── pdf input ui.png
+│   ├── text output 1.png
+│   ├── text output 2.png
+│   ├── pdf output 1.png
+│   ├── pdf output 2.png
+│   ├── pdf output 3.png
+
+---
+
+📸 Demo Screenshots
+📝 Text Input UI
+
+![Text Input UI](assets/text input UI.png)
+
+📄 PDF Input UI
+
+![PDF Input UI](assets/pdf input UI.png)
+
+🧠 Text Output (Result 1)
+
+![Text Output 1](assets/text output(1).png)
+
+🧠 Text Output (Result 2)
+
+![Text Output 2](assets/text output(2).png)
+
+📄 PDF Output (Result 1)
+
+![PDF Output 1](assets/pdf output(1).png)
+
+📄 PDF Output (Result 2)
+
+![PDF Output 2](assets/pdf output(2).png)
+
+📄 PDF Output (Result 3)
+
+![PDF Output 3](assets/pdf output(3).png)
+
+📊 Use Cases
+Summarizing research papers 📚
+Quick reading of long PDF notes 📄
+Extracting key points from articles 📰
+Study material summarization 🎓
+
+
+💡 Future Improvements
+🌐 URL/article summarization
+🧾 Export summary as PDF
+⚡ Chunk-based long document processing
+🌍 Multi-language support
+
+👨‍💻 Author
 Anushka Chavare

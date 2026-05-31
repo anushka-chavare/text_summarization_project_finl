@@ -1,81 +1,120 @@
-## EXTRACTIVE SUMMARIZATION (NLTK)
-
 import streamlit as st
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize, sent_tokenize
-import heapq
 from transformers import pipeline
+from pypdf import PdfReader
 
-# -----------------------------
-# Extractive Summarization
-# -----------------------------
+# ----------------------------
+# MODEL
+# ----------------------------
+summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
 
-st.title("Text Summarizer (Extractive NLP)")
+# ----------------------------
+# FUNCTIONS
+# ----------------------------
+def extract_text_from_pdf(file):
+    reader = PdfReader(file)
+    text = ""
 
-text = st.text_area("Enter Text")
+    for page in reader.pages:
+        if page.extract_text():
+            text += page.extract_text()
 
-if st.button("Summarize (Extractive)"):
+    return text
 
-    if text.strip():
+def summarize_text(text, max_len):
+    if len(text.split()) > 800:
+        text = " ".join(text.split()[:800])  # safety limit
 
-        sentences = sent_tokenize(text)
+    summary = summarizer(
+        text,
+        max_length=max_len,
+        min_length=30,
+        do_sample=False
+    )
+    return summary[0]["summary_text"]
 
-        stop_words = set(stopwords.words("english"))
+# ----------------------------
+# UI
+# ----------------------------
+st.set_page_config(page_title="AI Summarizer", layout="centered")
 
-        word_freq = {}
+st.title("📄 AI Text & PDF Summarizer")
+st.write("Summarize text or upload a PDF using Transformers AI")
 
-        for word in word_tokenize(text.lower()):
-            if word.isalnum() and word not in stop_words:
-                word_freq[word] = word_freq.get(word, 0) + 1
+# Sidebar
+st.sidebar.title("ℹ️ Model Info")
+st.sidebar.write("Model: facebook/bart-large-cnn")
+st.sidebar.write("Task: Abstractive Summarization")
 
-        sentence_scores = {}
+# Summary length control
+length = st.slider("✂️ Summary Length", 50, 200, 100)
 
-        for sentence in sentences:
-            for word in word_tokenize(sentence.lower()):
-                if word in word_freq:
-                    sentence_scores[sentence] = (
-                        sentence_scores.get(sentence, 0)
-                        + word_freq[word]
-                    )
+# Tabs
+tab1, tab2 = st.tabs(["✍️ Text Input", "📄 PDF Upload"])
 
-        summary = heapq.nlargest(
-            3,
-            sentence_scores,
-            key=sentence_scores.get
-        )
+# ----------------------------
+# TAB 1: TEXT
+# ----------------------------
+with tab1:
+    st.subheader("Enter Text")
 
-        st.subheader("Extractive Summary")
-        st.write(" ".join(summary))
-
-# -----------------------------
-# Transformer Summarization
-# -----------------------------
-
-st.title("AI Text Summarizer (Transformer)")
-
-transformer_text = st.text_area(
-    "Enter Text for Transformer Summarization"
-)
-
-@st.cache_resource
-def load_model():
-    return pipeline(
-        "summarization",
-        model="facebook/bart-large-cnn"
+    example = st.selectbox(
+        "Try Example",
+        [
+            "AI is transforming industries by enabling automation and intelligent decision making.",
+            "Machine learning is a subset of artificial intelligence that focuses on data-driven learning."
+        ]
     )
 
-summarizer = load_model()
+    text = st.text_area("Input Text", value=example, height=200)
 
-if st.button("Summarize (Transformer)"):
+    if st.button("Summarize Text"):
+        if text.strip():
+            summary = summarize_text(text, length)
 
-    if transformer_text.strip():
+            st.subheader("🧠 Summary")
+            st.write(summary)
 
-        summary = summarizer(
-            transformer_text,
-            max_length=100,
-            min_length=30,
-            do_sample=False
-        )
+            st.subheader("📊 Stats")
+            st.write(f"Original Words: {len(text.split())}")
+            st.write(f"Summary Words: {len(summary.split())}")
 
-        st.subheader("Transformer Summary")
-        st.write(summary[0]["summary_text"])
+            st.download_button(
+                "⬇️ Download Summary",
+                summary,
+                file_name="summary.txt"
+            )
+        else:
+            st.warning("Please enter text")
+
+# ----------------------------
+# TAB 2: PDF
+# ----------------------------
+with tab2:
+    st.subheader("Upload PDF File")
+
+    uploaded_file = st.file_uploader("Choose a PDF", type=["pdf"])
+
+    if uploaded_file is not None:
+        text = extract_text_from_pdf(uploaded_file)
+
+        if text.strip():
+            st.subheader("📄 Extracted Text Preview")
+            st.write(text[:1000] + "...")
+
+            if st.button("Summarize PDF"):
+                summary = summarize_text(text, length)
+
+                st.subheader("🧠 Summary")
+                st.write(summary)
+
+                st.subheader("📊 Stats")
+                st.write(f"Original Words: {len(text.split())}")
+                st.write(f"Summary Words: {len(summary.split())}")
+
+                st.download_button(
+                    "⬇️ Download Summary",
+                    summary,
+                    file_name="pdf_summary.txt"
+                )
+        else:
+            st.error("Could not extract text from PDF")
