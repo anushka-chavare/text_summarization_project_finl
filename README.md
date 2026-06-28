@@ -1,102 +1,124 @@
-# 📄 AI Text & PDF Summarizer
+# AI Text & PDF Summarizer
 
-An AI-powered web application that summarizes long text and PDF documents using HuggingFace Transformers and Streamlit.
-
----
-
-## 🚀 Overview
-
-This project is a smart summarization tool that extracts key information from long text and PDF files using a pre-trained transformer model. It provides an interactive web interface built with Streamlit.
+An AI-powered web application that summarizes long text and PDF documents using state-of-the-art transformer models from Hugging Face. The application provides an intuitive Streamlit interface for generating concise summaries from user-provided text or uploaded PDF files.
 
 ---
 
-## ✨ Features
+## Features
 
-- ✍️ Summarize raw text input  
-- 📄 Upload and summarize PDF documents  
-- 🎚 Adjustable summary length control  
-- 📊 Word count statistics (input vs summary)  
-- 📥 Download summary as text file  
-- 🧠 Example inputs for quick testing  
-
----
-
-## 🛠️ Tech Stack
-
-- Python 🐍  
-- Streamlit 🎈  
-- HuggingFace Transformers 🤗  
-- PyPDF 📄  
+* Summarize raw text input
+* Extract and summarize PDF documents
+* Adjustable summary length
+* Input vs. summary word count comparison
+* Download generated summaries
+* Interactive Streamlit web interface
 
 ---
 
-## 🤖 Model Used
+## Technologies Used
 
-- `facebook/bart-large-cnn`
-
----
-
-## 📁 Project Structure
----
-📁 text_summarization_project
-├── 📄 app.py
-├── 📄 requirements.txt
-└── 📁 assets
-    ├── 🖼️ text_input_ui.png
-    ├── 🖼️ pdf_input_ui.png
-    ├── 🖼️ text_output_1.png
-    ├── 🖼️ text_output_2.png
-    ├── 🖼️ pdf_output_1.png
-    ├── 🖼️ pdf_output_2.png
-    └── 🖼️ pdf_output_3.png
+* Python
+* Streamlit
+* Hugging Face Transformers
+* PyPDF
+* BART (`facebook/bart-large-cnn`)
 
 ---
 
-## 🌐 Live Demo
+## Model
 
-👉 https://textsummarizationprojectfinl.streamlit.app/
+The application uses **facebook/bart-large-cnn**, a transformer-based sequence-to-sequence model fine-tuned for abstractive text summarization.
 
-📸 Demo Screenshots
-📝 Text Input UI
+---
 
-![Text Input UI](assets/text_input_ui.png)
+## Project Structure
 
-📄 PDF Input UI
+```
+text_summarization_project/
+│
+├── app.py
+├── requirements.txt
+├── assets/
+│   ├── text_input_ui.png
+│   ├── pdf_input_ui.png
+│   ├── text_output1.png
+│   ├── text_output2.png
+│   ├── pdf_output1.png
+│   ├── pdf_output2.png
+│   └── pdf_output3.png
+└── README.md
+```
 
-![PDF Input UI](assets/pdf_input_ui.png)
+---
 
-🧠 Text Output (Result 1)
+## Installation
 
-![Text Output 1](assets/text_output1.png)
+Clone the repository:
 
-🧠 Text Output (Result 2)
+```bash
+git clone https://github.com/<anushka-chavare>/text_summarization_project_finl.git
+```
 
-![Text Output 2](assets/text_output2.png)
+Install dependencies:
 
-📄 PDF Output (Result 1)
+```bash
+pip install -r requirements.txt
+```
 
-![PDF Output 1](assets/pdf_output1.png)
+Run the application:
 
-📄 PDF Output (Result 2)
+```bash
+streamlit run app.py
+```
 
-![PDF Output 2](assets/pdf_output2.png)
+---
 
-📄 PDF Output (Result 3)
+## Live Demo
 
-![PDF Output 3](assets/pdf_output3.png)
+https://textsummarizationprojectfinl.streamlit.app/
 
-📊 Use Cases
-Summarizing research papers 📚
-Quick reading of long PDF notes 📄
-Extracting key points from articles 📰
-Study material summarization 🎓
+---
 
+## Screenshots
 
-💡 Future Improvements
-🌐 URL/article summarization
-🧾 Export summary as PDF
-⚡ Chunk-based long document processing
-🌍 Multi-language support
+### Text Input
 
-👨‍💻 Author
-Anushka Chavare
+![Text Input](assets/text_input_ui.png)
+
+### PDF Upload
+
+![PDF Upload](assets/pdf_input_ui.png)
+
+### Generated Summary
+
+![Summary](assets/text_output1.png)
+
+---
+
+## Applications
+
+* Research paper summarization
+* Article summarization
+* Study notes condensation
+* Document review
+* Educational content analysis
+
+---
+
+## Future Enhancements
+
+* URL summarization
+* Multi-language summarization
+* Export summary as PDF
+* Support for very large documents using chunk-based processing
+* OCR support for scanned PDFs
+
+---
+
+## Author
+
+**Anushka Chavare**
+
+GitHub: https://github.com/anushka-chavare
+
+LinkedIn: https://www.linkedin.com/in/anushka-chavare/
