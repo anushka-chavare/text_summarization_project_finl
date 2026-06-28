@@ -51,27 +51,6 @@ text_summarization_project/
 
 ---
 
-## Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/<anushka-chavare>/text_summarization_project_finl.git
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-Run the application:
-
-```bash
-streamlit run app.py
-```
-
----
 
 ## Live Demo
 
