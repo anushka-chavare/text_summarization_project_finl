@@ -8,6 +8,8 @@ An AI-powered web application that summarizes long text and PDF documents using 
 
 * Summarize raw text input
 * Extract and summarize PDF documents
+* Text cleaning for PDF extraction issues (broken lines, hyphenation, extra spaces)
+* Chunk-based summarization for long, multi-page documents
 * Adjustable summary length
 * Input vs. summary word count comparison
 * Download generated summaries
@@ -28,6 +30,18 @@ An AI-powered web application that summarizes long text and PDF documents using 
 ## Model
 
 The application uses **facebook/bart-large-cnn**, a transformer-based sequence-to-sequence model fine-tuned for abstractive text summarization.
+
+---
+
+## How It Works
+
+1. **Input**: text is pasted in, or extracted page by page from an uploaded PDF using `pypdf`.
+2. **Cleaning**: line breaks, words hyphenated across lines and repeated spaces are fixed.
+3. **Chunking**: BART accepts at most 1024 tokens, so the text is split into chunks of whole sentences (about 600 words each).
+4. **Summarization**: each chunk is summarized with BART; the partial summaries are combined and, if still longer than the selected length, summarized again.
+5. **Output**: the final summary, word-count stats, number of chunks processed, and a download button.
+
+The model is loaded once with `@st.cache_resource`, so it is not reloaded on every interaction.
 
 ---
 
@@ -89,7 +103,6 @@ https://textsummarizationprojectfinl.streamlit.app/
 * URL summarization
 * Multi-language summarization
 * Export summary as PDF
-* Support for very large documents using chunk-based processing
 * OCR support for scanned PDFs
 
 ---
